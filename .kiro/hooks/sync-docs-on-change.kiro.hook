@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "name": "Sync Documentation on Code Changes",
+  "description": "Monitors source file changes in both sleam-crm and crm-server projects and prompts the agent to update relevant README files and sprint plan documentation to reflect code changes",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "sleam-crm/src/**/*.ts",
+      "sleam-crm/src/**/*.tsx",
+      "sleam-crm/src/**/*.css",
+      "sleam-crm/vite.config.ts",
+      "sleam-crm/tsconfig.json",
+      "sleam-crm/package.json",
+      "crm-server/src/**/*.ts",
+      "crm-server/tsconfig.json",
+      "crm-server/package.json",
+      "crm-server/nodemon.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the changes made to the source files. Update the relevant README (sleam-crm/README.md or crm-server/README.md) to reflect any new features, API changes, configuration updates, or architectural changes. If the changes introduce functionality not covered in sleam-crm/.kiro/specs/crm-3-sprint-plan/design.md, update the sprint plan to document the new scope or features added."
+  }
+}
